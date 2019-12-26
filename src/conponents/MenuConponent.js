@@ -1,21 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Media} from 'reactstrap'
 
-class Menu extends Component{
-    
-render(){
-    const menu = this.props.topics.map((topic)=>{
+function RenderMenuComponent({topic,onClick}){
+    return(
+        <Media  tag="li">
+        <Media left middle onClick={()=>onClick(topic)}>
+            <Media object height={120} width={120} src={topic.image} alt={topic.name}/>
+        </Media>
+        <Media body className="ml-5">
+          <Media heading>{topic.name}</Media>
+          <p>{topic.description}</p>
+        </Media>
+      </Media>
+    )
+}
+
+const Menu = (props)=>{
+    const menu = props.topics.map((topic)=>{
         return(
             <div key={topic.id} className="col-12 mt-5">
-                <Media  tag="li">
-                  <Media left middle onClick={()=>this.props.onClick(topic)}>
-                      <Media object height={120} width={120} src={topic.image} alt={topic.name}/>
-                  </Media>
-                  <Media body className="ml-5">
-                    <Media heading>{topic.name}</Media>
-                    <p>{topic.description}</p>
-                  </Media>
-                </Media>
+            <RenderMenuComponent topic={topic} onClick={props.onClick} />
             </div>
         )
     });
@@ -28,5 +32,4 @@ render(){
      </div>
     );
   }
-}
 export default Menu
