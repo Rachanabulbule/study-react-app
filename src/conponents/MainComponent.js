@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Navbar, NavbarBrand } from 'reactstrap';
 import { TOPICS } from '../shared/topicsDetails'
 import TopicDetails from './TopicDetailsComponent'
 import Menu from './MenuConponent'
+import Header from './HeaderComponent'
+import Footer from './FooterComponent'
 
 class Main extends Component {
     constructor(props) {
@@ -22,13 +23,10 @@ class Main extends Component {
     render() {
         return (
             <div className="App">
-                <Navbar dark color="secondary">
-                    <div className="container">
-                        <NavbarBrand href="/">Tutorials</NavbarBrand>
-                    </div>
-                </Navbar>
+                <Header />
                 <Menu topics={this.state.topics} onClick={(topic) => this.onTopicSelect(topic)} />
                 <TopicDetails topicDetail={this.state.topicSelect} />
+                <Footer />
             </div>
         )
     }
